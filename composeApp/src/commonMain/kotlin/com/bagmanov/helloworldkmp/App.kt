@@ -1,6 +1,7 @@
 package com.bagmanov.helloworldkmp
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -11,13 +12,18 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
+fun App(
+    batteryManager: BatteryManager
+) {
     MaterialTheme {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "Hello, World!")
+            Column {
+                Text(text = "Hello, World!")
+                Text(text = "Battery level is ${batteryManager.getBatteryLevel()} %")
+            }
         }
     }
 }
