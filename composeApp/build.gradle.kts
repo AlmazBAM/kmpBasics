@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.composeCompiler)
 }
 
@@ -35,6 +36,7 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
 
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -51,14 +53,18 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
+
+            implementation(libs.bundles.ktor)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(kotlin("test-annotations-common"))
             implementation(libs.assertk)
 
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+            implementation(libs.ui.test)
+        }
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
         androidInstrumentedTest.dependencies {
             implementation(libs.compose.ui.test.junit4.android)
