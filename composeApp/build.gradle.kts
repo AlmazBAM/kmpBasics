@@ -63,7 +63,7 @@ kotlin {
 
             implementation(libs.ui.test)
         }
-        nativeMain.dependencies {
+        iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
         androidInstrumentedTest.dependencies {
