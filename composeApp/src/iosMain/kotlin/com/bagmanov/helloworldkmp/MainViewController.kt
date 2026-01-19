@@ -3,6 +3,7 @@ package com.bagmanov.helloworldkmp
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import com.bagmanov.helloworldkmp.di.initKoin
+import com.bagmanov.helloworldkmp.presentation.App
 
 fun MainViewController() = ComposeUIViewController(
     configure = {
@@ -11,7 +12,7 @@ fun MainViewController() = ComposeUIViewController(
 ) {
     App(
         batteryManager = remember {
-            BatteryManager()
+            com.bagmanov.helloworldkmp.data.battery.BatteryManager()
         }
     )
 }

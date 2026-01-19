@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp
+package com.bagmanov.helloworldkmp.presentation
 
 import androidx.compose.runtime.Immutable
 

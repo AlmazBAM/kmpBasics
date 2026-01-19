@@ -1,8 +1,8 @@
-package com.bagmanov.helloworldkmp.util
+package com.bagmanov.helloworldkmp.domain.util
 
 sealed interface Result<out D, out E : Error> {
     data class Success<out D>(val data: D) : Result<D, Nothing>
-    data class Error<out E : com.bagmanov.helloworldkmp.util.Error>(val error: E) :
+    data class Error<out E : com.bagmanov.helloworldkmp.domain.util.Error>(val error: E) :
         Result<Nothing, E>
 }
 

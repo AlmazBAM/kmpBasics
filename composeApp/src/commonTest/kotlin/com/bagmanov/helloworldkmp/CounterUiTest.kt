@@ -6,6 +6,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.runComposeUiTest
+import com.bagmanov.helloworldkmp.presentation.Counter
 import kotlin.test.Test
 
 class CounterUiTest {

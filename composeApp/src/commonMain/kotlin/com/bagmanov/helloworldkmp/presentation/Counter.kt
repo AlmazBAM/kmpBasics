@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp
+package com.bagmanov.helloworldkmp.presentation
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

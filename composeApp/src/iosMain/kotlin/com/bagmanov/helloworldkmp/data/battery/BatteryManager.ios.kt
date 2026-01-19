@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp
+package com.bagmanov.helloworldkmp.data.battery
 
 import platform.UIKit.UIDevice
 

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.bagmanov.helloworldkmp.presentation.App
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             App(
                 batteryManager = remember {
-                    BatteryManager(applicationContext)
+                    com.bagmanov.helloworldkmp.data.battery.BatteryManager(applicationContext)
                 }
             )
         }
@@ -27,5 +28,5 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App(BatteryManager(LocalContext.current))
+    App(com.bagmanov.helloworldkmp.data.battery.BatteryManager(LocalContext.current))
 }

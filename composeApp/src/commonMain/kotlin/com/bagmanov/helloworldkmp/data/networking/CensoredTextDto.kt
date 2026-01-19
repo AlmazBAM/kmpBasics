@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp.networking
+package com.bagmanov.helloworldkmp.data.networking
 
 import kotlinx.serialization.Serializable
 

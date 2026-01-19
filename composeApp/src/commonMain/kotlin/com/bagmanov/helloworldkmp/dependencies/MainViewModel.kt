@@ -1,26 +1,43 @@
 package com.bagmanov.helloworldkmp.dependencies
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bagmanov.helloworldkmp.MainUiState
-import com.bagmanov.helloworldkmp.networking.InsultCensorWord
-import com.bagmanov.helloworldkmp.util.onError
-import com.bagmanov.helloworldkmp.util.onSuccess
+import com.bagmanov.helloworldkmp.presentation.MainUiState
+import com.bagmanov.helloworldkmp.data.networking.InsultCensorWord
+import com.bagmanov.helloworldkmp.domain.model.Settings
+import com.bagmanov.helloworldkmp.domain.usecase.IncreaseCounterUseCase
+import com.bagmanov.helloworldkmp.domain.usecase.ObserveCounterUseCase
+import com.bagmanov.helloworldkmp.domain.util.onError
+import com.bagmanov.helloworldkmp.domain.util.onSuccess
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val repository: Repository,
-    private val makeCensorWord: InsultCensorWord
+    private val makeCensorWord: InsultCensorWord,
+    private val increaseCounterUseCase: IncreaseCounterUseCase,
+    private val observeCounterUseCase: ObserveCounterUseCase
 ): ViewModel() {
 
     private var _uiState = MutableStateFlow(MainUiState())
     val uiState = _uiState.asStateFlow()
+
+    val counter = observeCounterUseCase().stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        Settings()
+    )
     fun getHelloWorldString() = repository.getHelloWorld()
 
+    fun increaseCounter(value: Int) {
+        viewModelScope.launch {
+            increaseCounterUseCase(value)
+        }
+    }
 
     fun censorWords(uncensoredWords: String) {
         viewModelScope.launch {

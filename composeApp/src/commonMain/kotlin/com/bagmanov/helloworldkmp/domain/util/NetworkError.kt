@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp.util
+package com.bagmanov.helloworldkmp.domain.util
 
 enum class NetworkError: Error {
 

@@ -1,7 +1,7 @@
-package com.bagmanov.helloworldkmp.networking
+package com.bagmanov.helloworldkmp.data.networking
 
-import com.bagmanov.helloworldkmp.util.NetworkError
-import com.bagmanov.helloworldkmp.util.Result
+import com.bagmanov.helloworldkmp.domain.util.NetworkError
+import com.bagmanov.helloworldkmp.domain.util.Result
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get

@@ -1,4 +1,4 @@
-package com.bagmanov.helloworldkmp
+package com.bagmanov.helloworldkmp.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +24,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.bagmanov.helloworldkmp.data.battery.BatteryManager
 import com.bagmanov.helloworldkmp.dependencies.MainViewModel
 import helloworldkmp.composeapp.generated.resources.Res
 import helloworldkmp.composeapp.generated.resources.hello_world
@@ -53,6 +56,7 @@ fun App(
             composable(route = "home") {
                 val viewModel = koinViewModel<MainViewModel>()
                 val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+                val counter by viewModel.counter.collectAsStateWithLifecycle()
                 var uncensoredText by remember {
                     mutableStateOf("")
                 }
@@ -108,6 +112,17 @@ fun App(
                             text = uiState.errorMessage,
                             color = Color.Red
                         )
+                        Text(
+                            text = counter.counter.toString(),
+                            textAlign = TextAlign.Center,
+                            fontSize = 50.sp
+                        )
+                        Button(onClick = {
+                            val value = counter.counter + 1
+                            viewModel.increaseCounter(value)
+                        }) {
+                            Text("Increment!")
+                        }
                     }
                 }
             }
